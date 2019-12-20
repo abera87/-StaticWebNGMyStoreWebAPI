@@ -1,1 +1,1 @@
-"# -StaticWebNGMyStoreWebAPI" 
+# -StaticWebNGMyStoreWebAPI
