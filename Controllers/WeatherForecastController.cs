@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -24,6 +25,7 @@ namespace StaticWebNGMyStoreWebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
@@ -35,5 +37,14 @@ namespace StaticWebNGMyStoreWebAPI.Controllers
             })
             .ToArray();
         }
+        [HttpGet]
+        [Route("People")]
+        public string Get(DtoPeople obj) => $"Welcome to API world - {obj.Name}; This is simple call, your age: {obj.Age}";
+
+    }
+    public class DtoPeople
+    {
+        public int Age { get; set; }   
+        public string Name { get; set; }
     }
 }
